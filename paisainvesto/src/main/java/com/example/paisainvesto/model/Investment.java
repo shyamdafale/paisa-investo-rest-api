@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @Document
-@ApiModel(description = "All details about the Employee. ")
+@ApiModel(description = "All details about the Investment. ")
 public class Investment {
 
 	@Id

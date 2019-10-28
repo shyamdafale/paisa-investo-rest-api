@@ -7,33 +7,32 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import com.example.paisainvesto.model.Investment;
+import com.example.paisainvesto.model.Income;
 
-
-public class InvestmentDAOImpl implements InvestmentDAO {
+public class IncomeDAOImpl implements IncomeDAO {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	
+
 	@Override
-	public List<Investment> getAllInvestments() {
-		mongoTemplate.findAll(Investment.class);
+	public List<Income> getAllIncomes() {
+		mongoTemplate.findAll(Income.class);
 		return null;
 	}
 
 	@Override
-	public Investment getInvestmentById(String investmentId) {
+	public Income getIncomesById(String incomeId) {
 
 		Query query = new Query();
-		query.addCriteria(Criteria.where("investmentId").is(investmentId));
-		return mongoTemplate.findOne(query, Investment.class);
+		query.addCriteria(Criteria.where("incomeId").is(incomeId));
+		return mongoTemplate.findOne(query, Income.class);
 	}
 
 	@Override
-	public Investment addNewInvestment(Investment investment) {
-		mongoTemplate.save(investment);
+	public Income addNewIncome(Income income) {
+		mongoTemplate.save(income);
 		// Now, investment object will contain the ID as well
-		return investment;
+		return income;
 	}
 
 }

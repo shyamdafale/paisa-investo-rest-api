@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.paisainvesto.model.Income;
 import com.example.paisainvesto.model.Investment;
+import com.example.paisainvesto.repository.IncomeRepository;
 import com.example.paisainvesto.repository.InvestmentRepository;
 
 import io.swagger.annotations.Api;
@@ -26,40 +28,40 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @RequestMapping(value = "/v1")
 @Api(value = "PaisaInvesto Management System", description = "Operations pertaining to investors in PaisaInvesto Management System")
-public class InvestmentController {
+public class IncomeController {
 
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private final InvestmentRepository investmentRepository;
+	private final IncomeRepository incomeRepository;
 
-	public InvestmentController(InvestmentRepository investmentRepository) {
-		this.investmentRepository = investmentRepository;
+	public IncomeController(IncomeRepository incomeRepository) {
+		this.incomeRepository = incomeRepository;
 	}
 
-	@ApiOperation(value = "View a list of available investments", response = Investment.class)
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved investments list"),
+	@ApiOperation(value = "View a list of available incomes", response = Income.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved incomes list"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	@GetMapping(value = "show-investments")
-	public List<Investment> getAllInvestments() {
-		LOG.info("Getting all investments.");
-		return investmentRepository.findAll();
+	@GetMapping(value = "show-incomes")
+	public List<Income> getAllIncomes() {
+		LOG.info("Getting all incomes.");
+		return incomeRepository.findAll();
 	}
 
-	@ApiOperation(value = "View perticular available investments", response = List.class)
-	@GetMapping(value = "/{investmentId}")
-	public Optional<Investment> getInvestmentById(@PathVariable String investmentId) {
-		LOG.info("Getting investment with ID: {}.", investmentId);
-		return investmentRepository.findOneByInvestmentId(investmentId);
+	@ApiOperation(value = "View perticular available income", response = List.class)
+	@GetMapping(value = "/{incomeId}")
+	public Optional<Income> getIncomeById(@PathVariable String incomeId) {
+		LOG.info("Getting income with ID: {}.", incomeId);
+		return incomeRepository.findOneByIncomeId(incomeId);
 	}
 
-	@ApiOperation(value = "Add new investments", response = List.class)
-	@PostMapping(value = "/add-investment")
-	public Investment addNewInvestment(@RequestBody Investment investment) {
-		LOG.info("Saving investment");
-		return investmentRepository.save(investment);
+	@ApiOperation(value = "Add new income", response = List.class)
+	@PostMapping(value = "/add-income")
+	public Income addNewInvestment(@RequestBody Income income) {
+		LOG.info("Saving income");
+		return incomeRepository.save(income);
 	}
 
 }
