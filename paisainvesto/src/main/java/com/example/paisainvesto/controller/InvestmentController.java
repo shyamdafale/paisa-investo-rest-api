@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiResponses;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/v1")
-@Api(value = "Money Management System", description = "Operations pertaining to investors in MoneyInvesto Management System")
+@Api(value = "PaisaInvesto Management System", description = "Operations pertaining to investors in PaisaInvesto Management System")
 public class InvestmentController {
 
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -38,7 +38,7 @@ public class InvestmentController {
 	}
 
 	@ApiOperation(value = "View a list of available investments", response = Investment.class)
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved investments list"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
@@ -55,10 +55,10 @@ public class InvestmentController {
 		return investmentRepository.findOneByInvestmentId(investmentId);
 	}
 
-	@ApiOperation(value = "Add new  investments", response = List.class)
+	@ApiOperation(value = "Add new investments", response = List.class)
 	@PostMapping(value = "/add-investment")
 	public Investment addNewInvestment(@RequestBody Investment investment) {
-		LOG.info("Saving investment.");
+		LOG.info("Saving investment of "+investment.getInvestmentId());
 		return investmentRepository.save(investment);
 	}
 
