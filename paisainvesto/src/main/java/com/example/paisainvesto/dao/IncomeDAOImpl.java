@@ -9,11 +9,12 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.example.paisainvesto.model.Income;
 
+
 public class IncomeDAOImpl implements IncomeDAO {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
-
+	
 	@Override
 	public List<Income> getAllIncomes() {
 		mongoTemplate.findAll(Income.class);
@@ -21,7 +22,7 @@ public class IncomeDAOImpl implements IncomeDAO {
 	}
 
 	@Override
-	public Income getIncomesById(String incomeId) {
+	public Income getIncomeById(String incomeId) {
 
 		Query query = new Query();
 		query.addCriteria(Criteria.where("incomeId").is(incomeId));

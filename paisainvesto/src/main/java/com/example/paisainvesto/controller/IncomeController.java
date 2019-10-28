@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.paisainvesto.model.Income;
-import com.example.paisainvesto.model.Investment;
 import com.example.paisainvesto.repository.IncomeRepository;
-import com.example.paisainvesto.repository.InvestmentRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
