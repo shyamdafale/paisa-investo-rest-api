@@ -12,5 +12,8 @@ public interface InvestmentDAO {
 
 	Investment addNewInvestment(Investment investment);
 
-
+	void deleteInvestment(String investmentId);
+	
+	void updateInvestment(Investment investment);
+	
 }

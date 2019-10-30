@@ -7,9 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,6 +62,20 @@ public class InvestmentController {
 	public Investment addNewInvestment(@RequestBody Investment investment) {
 		LOG.info("Saving investment");
 		return investmentRepository.save(investment);
+	}
+	
+	@ApiOperation(value = "Delete investment", response = String.class)
+	@DeleteMapping(value = "/delete-investment/{investmentId}")
+	public void deleteInvestment(@PathVariable String investmentId) {
+		LOG.info("Deleting investment with ID: {}.", investmentId);
+		investmentRepository.deleteById(investmentId);
+	}
+
+	@ApiOperation(value = "Update investment", response = String.class)
+	@PutMapping(value = "/update-investment")
+	public void updateInvestment(@RequestBody Investment investment) {
+		LOG.info("Updating investment with ID: {}.", investment.getInvestmentId());
+		investmentRepository.save(investment);
 	}
 
 }

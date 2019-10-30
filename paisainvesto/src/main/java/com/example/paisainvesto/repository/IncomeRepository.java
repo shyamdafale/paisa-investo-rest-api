@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.paisainvesto.model.Income;
 
-@CrossOrigin(origins="http://localhost:4200")
 @Repository
 public interface IncomeRepository extends MongoRepository<Income, String> {
 	

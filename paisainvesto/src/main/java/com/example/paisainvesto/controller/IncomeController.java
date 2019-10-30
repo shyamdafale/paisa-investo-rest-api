@@ -7,9 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +24,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@CrossOrigin(origins= "*")
 @RequestMapping(value = "/v1")
 @Api(value = "PaisaInvesto Management System", description = "Operations pertaining to investors in PaisaInvesto Management System")
 public class IncomeController {
@@ -57,9 +59,24 @@ public class IncomeController {
 
 	@ApiOperation(value = "Add new income", response = List.class)
 	@PostMapping(value = "/add-income")
-	public Income addNewInvestment(@RequestBody Income income) {
+	public Income addNewIncome(@RequestBody Income income) {
 		LOG.info("Saving income");
 		return incomeRepository.save(income);
 	}
 
+	
+	@ApiOperation(value = "Delete Income", response = String.class)
+	@DeleteMapping(value = "/delete-income/{incomeId}")
+	public void deleteIncome(@PathVariable String incomeId) {
+		LOG.info("Deleting income with ID: {}.", incomeId);
+		incomeRepository.deleteById(incomeId);
+	}
+
+	@ApiOperation(value = "Update income", response = String.class)
+	@PutMapping(value = "/update-income")
+	public void updateIncome(@RequestBody Income income) {
+		LOG.info("Updating income with ID: {}.", income.getIncomeId());
+		incomeRepository.save(income);
+	}
+	
 }
