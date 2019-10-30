@@ -63,7 +63,7 @@ public class InvestmentController {
 		LOG.info("Saving investment");
 		return investmentRepository.save(investment);
 	}
-	
+
 	@ApiOperation(value = "Delete investment", response = String.class)
 	@DeleteMapping(value = "/delete-investment/{investmentId}")
 	public void deleteInvestment(@PathVariable String investmentId) {
