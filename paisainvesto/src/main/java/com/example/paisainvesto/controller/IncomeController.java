@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@CrossOrigin(origins= "*")
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/v1")
 @Api(value = "PaisaInvesto Management System", description = "Operations pertaining to investors in PaisaInvesto Management System")
 public class IncomeController {
@@ -64,7 +64,6 @@ public class IncomeController {
 		return incomeRepository.save(income);
 	}
 
-	
 	@ApiOperation(value = "Delete Income", response = String.class)
 	@DeleteMapping(value = "/delete-income/{incomeId}")
 	public void deleteIncome(@PathVariable String incomeId) {
@@ -78,5 +77,5 @@ public class IncomeController {
 		LOG.info("Updating income with ID: {}.", income.getIncomeId());
 		incomeRepository.save(income);
 	}
-	
+
 }

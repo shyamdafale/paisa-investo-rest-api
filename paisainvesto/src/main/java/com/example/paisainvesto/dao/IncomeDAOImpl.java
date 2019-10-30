@@ -14,12 +14,11 @@ import com.example.paisainvesto.model.Investment;
 
 import io.swagger.annotations.ApiOperation;
 
-
 public class IncomeDAOImpl implements IncomeDAO {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	
+
 	@Override
 	public List<Income> getAllIncomes() {
 		mongoTemplate.findAll(Income.class);
@@ -43,14 +42,14 @@ public class IncomeDAOImpl implements IncomeDAO {
 
 	@Override
 	public void deleteIncome(String incomeId) {
-		
+
 		Query query = new Query();
 		query.addCriteria(Criteria.where("incomeId").is(incomeId));
-		Income incomeFromDB =  mongoTemplate.findOne(query, Income.class);		
+		Income incomeFromDB = mongoTemplate.findOne(query, Income.class);
 		mongoTemplate.remove(incomeFromDB);
-		
+
 	}
-	
+
 	@Override
 	public void updateIncome(Income income) {
 		Query query = new Query();
@@ -62,7 +61,5 @@ public class IncomeDAOImpl implements IncomeDAO {
 		}
 
 	}
-
-
 
 }
